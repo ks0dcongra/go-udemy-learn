@@ -7,10 +7,13 @@ createdb:
 dropdb: 
 	docker exec -it postgres dropdb go_udemy_learn
 
+sqlc:
+	docker run --rm -v "C:\Users\ks0dc\go-udemy-learn:/src" -w /src kjconroy/sqlc generate
+
 migrateup:
 	migrate -path db/migration -database "postgresql://postgres:Aa123456@localhost:9525/go_udemy_learn?sslmode=disable" -verbose up 1
 
 migratedown:
 	migrate -path db/migration -database "postgresql://postgres:Aa123456@localhost:9525/go_udemy_learn?sslmode=disable" -verbose down 1
 
-.PHONY: postgres createdb dropdb migrateup migratedown
+.PHONY: postgres createdb dropdb migrateup migratedown sqlc
